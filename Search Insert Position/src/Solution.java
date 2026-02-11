@@ -1,22 +1,18 @@
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
 
 class Solution {
     public int searchInsert(int[] nums, int target) {
-        List<Integer> numbers = new ArrayList<>();
+        int n = nums.length;
 
-        for (int i = 0; i < nums.length; i++) {
+        if(nums[0] > target) return 0;
+        for (int i = 0; i < n; i++) {
             if (nums[i] == target){
                 return i;
             }
-
-            numbers.add(nums[i]);
+            else if (nums[i] > target && nums[i - 1] < target){
+                return i;
+            }
         }
 
-        numbers.add(target);
-        Collections.sort(numbers);
-
-        return numbers.indexOf(target);
+        return n;
     }
 }
